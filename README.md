@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple web-based banking application that allows a user to register and send (fake) money to another user. 
 
-## Available Scripts
+## Main Features
 
-In the project directory, you can run:
+In the project you can:
 
-### `yarn start`
+### Create an account
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Anonymous authentication is used to tie the current device to a User uuid. 
+Doing so, *we require no password* as the user's device is the only one that can carry out money transfers.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Send dummy (fake) currency from one account to another
 
-### `yarn test`
+By using a **Cryptographic key (UUID-V4)** we provide the user with a 2-way authentication system. 
+In the future, the UUID string can easily be replaced by a QR sent by email.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### Check account balance
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Transfer Collection is designed as an **insert-only Ledger**, in doing so we guarantee the integrity of the transaction history and thus the user's balance.
+To preserve privacy to direct reading is allowed by the users to the Ledger & only an aggregation can be consumed.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Tech Stack
 
-### Code Splitting
+Front End: React / Bulma
+DB: MongoDB Stitch & Functions
+Hosting: Netlify/ GitLab
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The stacked was used to provide the most possible value in a 24 hour time-frame.
+The design of the application was inspired by BlockChain & AWS Quantum Ledger DB.
 
-### Analyzing the Bundle Size
+### Testing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Tests were defined & run manually. They could be split like so:
+Unit Tests: Assert correct configuration of Indexes & DB Security Rules.
+Integration Tests: Run for each one of the three main views of the application.
+E2E Test: Sign-up, transfer money to another account & validate transfer balance for each account.
 
-### Making a Progressive Web App
+### Security
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+There are two collections that support the app: Users & Transfers.
+Both collections are insert-only.
 
-### Advanced Configuration
+The user collection has the following fields: id, user_id, crypto_key & unique_name.
+It has an unique-index in each field to prevent duplicates.
+The crypto_key attribute is not readable by the client, the user_id is only readable by owner user.
+This user id is generated when connecting to the DB.
+Finally the list of unique_users is public and used to send money transfers.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+### Next Steps
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Resolve negative account balances by either: allowing money to go in & out of the system, or develop a credit system.
+Tests need to be carried out to guarantee the longevity of the user_id in the browser. A mechanism to recover accounts also needs to be developed.
+Improve data modeling & security by using a real ledger DB and set "trust scores" to each transaction via graph algorithms.
+Product & market fit should be assesed by monitoring the user's iteraction with the application. 
+Validate idea with domain expertes and develop a business model.
+Increase UX by using QR & improving style.
 
-### `yarn build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Contact
+Santiago M.
+*santiago.marti67@gmail.com*
