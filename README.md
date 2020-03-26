@@ -81,3 +81,11 @@ Finally, the list of unique_users is public and used to send money transfers, wh
 Santiago M.
 
 *santiago.marti67@gmail.com*
+
+## Run Locally
+#### `yarn install`
+
+#### `yarn start`
+
+
+
