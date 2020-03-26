@@ -1,5 +1,13 @@
-{
-    collection: UserKeys,
+[{
+    collection: Users,
     type: Unique,
     field: owner_id
-},
+}, {
+    collection: Users,
+    type: Unique,
+    field: key
+}, {
+    collection: Users,
+    type: Unique,
+    field: name
+}]

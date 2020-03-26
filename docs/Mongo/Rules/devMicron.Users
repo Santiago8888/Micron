@@ -1,0 +1,42 @@
+{
+  "roles": [
+    {
+      "name": "owner",
+      "apply_when": {
+        "owner_id": "%%user.id"
+      },
+      "fields": {
+        "key": {},
+        "name": {
+          "read": true
+        },
+        "owner_id": {
+          "read": true
+        }
+      },
+      "insert": {
+        "%%prevRoot": {
+          "%exists": false
+        }
+      },
+      "delete": true,
+      "additional_fields": {}
+    },
+    {
+      "name": "non-owner",
+      "apply_when": {},
+      "fields": {
+        "key": {},
+        "name": {
+          "read": true
+        },
+        "owner_id": {}
+      },
+      "write": false,
+      "insert": false,
+      "delete": false,
+      "additional_fields": {}
+    }
+  ],
+  "schema": {}
+}

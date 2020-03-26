@@ -1,0 +1,14 @@
+{
+  "roles": [
+    {
+      "name": "default",
+      "apply_when": {},
+      "insert": false,
+      "delete": false,
+      "fields": {},
+      "additional_fields": {}
+    }
+  ],
+  "filters": [],
+  "schema": {}
+}
