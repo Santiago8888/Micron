@@ -7,17 +7,23 @@ import React, { useState, useEffect } from 'react'
 
 
 export const Intro = ({ db, userId, setAuthenticated }) => {
-    const secretKey = uuidv4()
-    const [signedIn, setSignedIn] = useState(false)
+    const [ secretKey, setSecretKey ] = useState(null)
+    const [ signedIn, setSignedIn ] = useState(false)
+    const [ userName, setUserName ] = useState(null)
     
     const onSignUp = async name => {
+        setUserName(name)
+
+        const secretKey = uuidv4()
+        setSecretKey(secretKey)
+
         await db.collection('Users').insertOne({ key: secretKey, name: name, owner_id: userId }).catch(console.log)
         setSignedIn(true)
     } 
 
     return !signedIn 
         ? <SignUpForm onSignUp={onSignUp}/> 
-        : <SecretKeyDisplay secretKey={secretKey} setAuthenticated={setAuthenticated} /> 
+        : <SecretKeyDisplay secretKey={secretKey} setAuthenticated={()=> setAuthenticated(userName)} /> 
 } 
 
 

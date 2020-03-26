@@ -19,17 +19,22 @@ const App = () => {
             setUserId(userId)
 
             const user = await db.collection('Users').findOne({owner_id: userId}).catch(console.log)
-            setUserName(user.name)
+            setUserName(user ? user.name : null)
 
             user ? setAuthenticated(true) : setAuthenticated(false)
         } fetchData()
     }, [])
 
+    const authenticate = userName => {
+        setUserName(userName)
+        setAuthenticated(true)
+    }
+
   
     return <div className="App">
-        { isAuthenticated
+        { isAuthenticated // Condition can be settled with userName.
             ?   <AuthenticatedView db={db} userId={userId} client={client} userName={userName}/>
-            :   <Intro db={db} userId={userId} setAuthenticated={() => setAuthenticated(true)}/>
+            :   <Intro db={db} userId={userId} setAuthenticated={authenticate}/>
         }
     </div>
 }
