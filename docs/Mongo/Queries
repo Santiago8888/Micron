@@ -1,0 +1,20 @@
+Connect to DB (Done)
+Authenticate User (Done)
+Query for User: (Done)
+    If User Exists set Authenticated. (Done)
+
+If not Show Form (Done)
+Post TransactionKeys (Done)
+Post to Users (Done)
+Post to UserKeys (Done)
+
+Handle error (Done)
+Set authenticated (Done)
+
+Query for Users (Done)
+Post to Ledger (Done)
+Validate Transaction (Done)
+Write Transaction (Done)
+
+Aggregate Balance (Done)
+Query for Users (Done)

@@ -1,21 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
-export const UsersTable = ({ users, onUserSelect }) => <table className="table">
-    <thead>
-        <tr>
-            <th><abbr title="Index">I</abbr></th>
-            <th>Name</th>
-            <th/>
-        </tr>
-    </thead>
-    <tbody>
-        {users.map(({ name }, i) => 
-            <tr key={`user-${i}`}>
-                <th>{i+1}</th>
-                <td> { name } </td>
-                <td> <button className="button" onClick={()=> onUserSelect(name)}>Transfer</button> </td>
+export const UsersTable = ({ users, onUserSelect, client }) => {
+    const [ usersButtonText, setUsersButtonText ] = useState('Check Balance')
+    const checkBalance = async owner_id => {
+        const { success, data } = await client.callFunction('checkBalance', [owner_id])
+        if(success){ setUsersButtonText(data) } 
+        else { console.log('Error checking balance')}
+    }
+
+    return <table className="table">
+        <thead>
+            <tr>
+                <th><abbr title="Index">#</abbr></th>
+                <th>Name</th>
+                <th/>
             </tr>
-        )}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {users.map(({ name, owner_id }, i) => 
+                <tr key={`user-${i}`}>
+                    <th>{i+1}</th>
+                    <td> { name } </td>
+                    <td>{
+                        owner_id
+                        ? <button className="button" onClick={()=> checkBalance(owner_id)}> { usersButtonText } </button>
+                        : <button className="button" onClick={()=> onUserSelect(name)}> Transfer </button>
+                    }</td>
+                      
+                </tr>
+            )}
+        </tbody>
+    </table>
+}
+

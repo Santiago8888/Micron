@@ -1,0 +1,9 @@
+If Authenticated Navigate to Users
+Else Create User
+Store Locally Secret Key
+
+Check Balance == 0
+Tranfer 5 Units
+Balance === -5
+
+Tranfered User Balance === +5

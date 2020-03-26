@@ -4,27 +4,27 @@ Stages:
     - Tested
 
 SignUp
-    - SignUpForm (Developed)
+    - SignUpForm (Functional)
         - Title
         - Input
         - Button
-    - SecretKeyDisplay (Developed)
+    - SecretKeyDisplay (Functional)
         - Instructions
         - Key
         - Button
 
 Users
-    - UsersTable
+    - UsersTable (Functional)
         - Name
         - CTA
 
     
 Transact
-    - TransactionForm
-        - Quantity (Integer)
+    - TransactionForm (Functional)
+        - Quantity <Integer>
         - Secret Key
         - Submit
 
-    - ShowBalance
+    - ShowBalance (Functional)
         - Quantity
         - Navigation

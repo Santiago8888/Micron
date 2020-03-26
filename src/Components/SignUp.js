@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 
+
 export const SignUpForm = ({ onSignUp }) => {
     const [ userName, setUserName ] = useState('')
 
@@ -10,6 +11,7 @@ export const SignUpForm = ({ onSignUp }) => {
         <button className="button" onClick={()=> onSignUp(userName)}>Submit</button>
     </div>
 }
+
 
 export const SecretKeyDisplay = ({ secretKey, setAuthenticated }) => <div className="container">
     <div className="notification"> This is important. Store this  secret somewhere safe. </div>
