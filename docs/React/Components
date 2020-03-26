@@ -1,0 +1,30 @@
+Stages:
+    - Developed
+    - Functional
+    - Tested
+
+SignUp
+    - SignUpForm (Developed)
+        - Title
+        - Input
+        - Button
+    - SecretKeyDisplay (Developed)
+        - Instructions
+        - Key
+        - Button
+
+Users
+    - UsersTable
+        - Name
+        - CTA
+
+    
+Transact
+    - TransactionForm
+        - Quantity (Integer)
+        - Secret Key
+        - Submit
+
+    - ShowBalance
+        - Quantity
+        - Navigation

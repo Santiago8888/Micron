@@ -1,0 +1,5 @@
+{
+    collection: UserKeys,
+    type: Unique,
+    field: owner_id
+},
